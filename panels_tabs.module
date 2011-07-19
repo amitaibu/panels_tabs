@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Show panel panes in a region as tabs.
+ */
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function panels_tabs_ctools_plugin_directory($module, $plugin) {
+  dpm($plugiun);
+  if ($module == 'panels' && $plugin == 'styles') {
+    return 'plugins/' . $plugin;
+  }
+}
