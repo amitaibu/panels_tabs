@@ -71,6 +71,5 @@ function theme_panels_tabs_style_render_region($vars) {
     ++$delta;
   }
 
-  // FIXME: Return as array.
   return drupal_render($element);
 }
