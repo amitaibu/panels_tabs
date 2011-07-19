@@ -28,9 +28,23 @@ function theme_panels_tabs_style_render_region($vars) {
 
   $tab_id = 'tabs-' . $owner_id . '-' . $region_id;
 
-  $output = array(
+  $element = array(
     '#prefix' => '<div id="' . $tab_id . '">',
     '#suffix' => '</div>',
+    '#attached' => array(
+      'library' => array(array('system', 'ui.tabs')),
+      'js' => array(
+        drupal_get_path('module', 'panels_tabs') . '/js/panels_tabs.js' => array('type' => 'file'),
+      ),
+    ),
+  );
+
+  $settings = array();
+  $settings['panelsTabs']['tabsID'][] = $tab_id;
+
+  $element['#attached']['js'][] = array(
+    'type' => 'setting',
+    'data' => $settings,
   );
 
   // Get the pane titles.
@@ -44,12 +58,12 @@ function theme_panels_tabs_style_render_region($vars) {
     ++$delta;
   }
 
-  $output['tabs_title'] = array('#theme' => 'item_list', '#items' => $items);
+  $element['tabs_title'] = array('#theme' => 'item_list', '#items' => $items);
 
   $items = array();
   $delta = 1;
   foreach ($panes as $pane_id => $item) {
-    $output['tabs_content'][$pane_id] = array(
+    $element['tabs_content'][$pane_id] = array(
       '#prefix' => '<div id="' . $tab_id . '-' . $delta . '">',
       '#suffix' => '</div>',
       '#markup' => $item,
@@ -58,5 +72,5 @@ function theme_panels_tabs_style_render_region($vars) {
   }
 
   // FIXME: Return as array.
-  return drupal_render($output);
+  return drupal_render($element);
 }
