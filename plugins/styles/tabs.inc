@@ -51,9 +51,8 @@ function theme_panels_tabs_style_render_region($vars) {
   $items = array();
   $delta = 1;
   foreach ($display->panels[$region_id] as $pane_id) {
-    $pane = $display->content[$pane_id];
-    $content = ctools_content_render($pane->type, $pane->subtype, $pane->configuration);
-    $title = !empty($content->title) ? $content->title : t('Tab @delta', array('@delta' => $delta));
+    $title = panels_tabs_pane_titles($display->did, $pane_id);
+    $title = $title ? $title : t('Tab @delta', array('@delta' => $delta));
     $items[] = '<a href="#'. $tab_id . '-' . $delta .'">' . $title . '</a>';
     ++$delta;
   }
