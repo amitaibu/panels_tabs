@@ -24,8 +24,6 @@ function theme_panels_tabs_style_render_region($vars) {
   $owner_id = $vars['owner_id'];
   $panes = $vars['panes'];
 
-  drupal_add_library('system', 'jquery.ui');
-
   $tab_id = 'tabs-' . $owner_id . '-' . $region_id;
 
   $element = array(
