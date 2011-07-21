@@ -29,7 +29,7 @@ function panels_tabs_panels_pane_content_alter(&$content, $pane, $args, $context
     if ($key == 'style_settings') {
       continue;
     }
-    if (!empty($values['style']) && $values['style'] == 'tabs' && $pane->panel == $key) {
+    if (!empty($values['style']) && $values['style'] == 'tabs' && $pane->panel == $key && !empty($content->title)) {
       // Capture the title.
       panels_tabs_pane_titles($display->did, $pane->pid, $content->title);
       // Remove it form the pane.
