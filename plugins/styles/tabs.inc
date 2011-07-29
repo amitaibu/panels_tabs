@@ -50,7 +50,7 @@ function theme_panels_tabs_style_render_region($vars) {
   $delta = 1;
   foreach ($display->panels[$region_id] as $pane_id) {
     // Make sure the pane exists.
-    if ($panes[$pane_id]) {
+    if (!empty($panes[$pane_id])) {
       $title = panels_tabs_pane_titles($display->did, $pane_id);
       $title = $title ? $title : t('Tab @delta', array('@delta' => $delta));
       $items[] = '<a href="#'. $tab_id . '-' . $delta .'">' . $title . '</a>';
