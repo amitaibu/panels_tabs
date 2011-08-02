@@ -21,7 +21,9 @@ function panels_tabs_ctools_plugin_directory($module, $plugin) {
  * and remove it form the pane itself.
  */
 function panels_tabs_panels_pane_content_alter(&$content, $pane, $args, $context) {
-  // dpm(array($content, $pane, $args, $context));
+  if (empty($pane->did)) {
+    return;
+  }
   // TODO: panels_load_display() isn't cached.
   $display = panels_load_display($pane->did);
   // Get the regions that should be themed as tabs.
